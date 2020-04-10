@@ -1,9 +1,11 @@
 package com.mandar.breweryapplication.controller;
 
+import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.*;
+import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -15,7 +17,6 @@ import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import static org.hamcrest.Matchers.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -71,5 +72,16 @@ public class BeerControllerTest {
         .contentType(MediaType.APPLICATION_JSON)
         .content(jsonBeerDto))
         .andExpect(status().isCreated());
+  }
+
+  @Test
+  public void updateBeerDtoTest() throws Exception {
+    validBeerDto.setBeerType("Pale Ale");
+    String jsonBeerDto = objectMapper.writeValueAsString(validBeerDto);
+
+    mockMvc.perform(put("/api/v1/beer/" + validBeerDto.getId())
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(jsonBeerDto))
+        .andExpect(status().isNoContent());
   }
 }
