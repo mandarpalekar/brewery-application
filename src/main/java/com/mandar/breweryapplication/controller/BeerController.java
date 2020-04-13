@@ -2,11 +2,9 @@ package com.mandar.breweryapplication.controller;
 
 import com.mandar.breweryapplication.model.BeerDto;
 import com.mandar.breweryapplication.service.BeerService;
-import com.sun.xml.internal.bind.v2.TODO;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +38,7 @@ public class BeerController {
         BeerDto beerDtoSave = beerService.saveNewBeer(beerDto);
         HttpHeaders httpHeaders = new HttpHeaders();
         //TODO: add hostname to url
-        httpHeaders.add("Location", "/api/v1/beer" + beerDtoSave.getId().toString());
+        httpHeaders.add("Location", "/api/v1/beer/" + beerDtoSave.getId().toString());
         return new ResponseEntity<>(httpHeaders, HttpStatus.CREATED);
     }
 
