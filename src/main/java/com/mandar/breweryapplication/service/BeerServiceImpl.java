@@ -9,28 +9,28 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class BeerServiceImpl implements BeerService {
 
-  @Override
-  public BeerDto getBeerById(UUID beerId) {
-    return BeerDto.builder().id(UUID.randomUUID())
-        .beerName("Bud Light")
-        .beerType("Lager")
-        .build();
-  }
+    @Override
+    public BeerDto getBeerById(UUID beerId) {
+        return BeerDto.builder().id(UUID.randomUUID())
+            .beerName("Bud Light")
+            .beerType("Lager")
+            .build();
+    }
 
-  @Override
-  public BeerDto saveNewBeer(BeerDto beerDto) {
-    return BeerDto.builder()
-        .id(UUID.randomUUID())
-        .build();
-  }
+    @Override
+    public BeerDto saveNewBeer(BeerDto beerDto) {
+        return BeerDto.builder()
+            .id(UUID.randomUUID())
+            .build();
+    }
 
-  @Override
-  public void updateBeer(UUID beerId, BeerDto beerDto) {
-    //TODO add real impl to update beer object
-  }
+    @Override
+    public void updateBeer(UUID beerId, BeerDto beerDto) {
+        //TODO add real impl to update beer object
+    }
 
-  @Override
-  public void deleteBeerById(UUID beerId) {
-    log.debug("Deleting a beer...");
-  }
+    @Override
+    public void deleteBeerById(UUID beerId) {
+        log.debug("Deleting a beer...");
+    }
 }

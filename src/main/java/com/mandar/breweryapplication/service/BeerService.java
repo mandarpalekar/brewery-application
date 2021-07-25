@@ -4,11 +4,12 @@ import com.mandar.breweryapplication.model.BeerDto;
 import java.util.UUID;
 
 public interface BeerService {
-  BeerDto getBeerById(UUID beerId);
 
-  BeerDto saveNewBeer(BeerDto beerDto);
+    BeerDto getBeerById(UUID beerId);
 
-  void updateBeer(UUID beerId, BeerDto beerDto);
+    BeerDto saveNewBeer(BeerDto beerDto);
 
-  void deleteBeerById(UUID beerId);
+    void updateBeer(UUID beerId, BeerDto beerDto);
+
+    void deleteBeerById(UUID beerId);
 }

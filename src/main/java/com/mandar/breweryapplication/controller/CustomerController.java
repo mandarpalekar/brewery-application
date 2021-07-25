@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class CustomerController {
+
     private final CustomerService customerService;
 
     @GetMapping({"/{customerId}"})
@@ -28,7 +29,9 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.getCustomerById(customerId), HttpStatus.OK);
     }
 
-    /** Create a new customer dto **/
+    /**
+     * Create a new customer dto
+     **/
     @PostMapping
     public ResponseEntity<CustomerDto> saveCustomerDto(@RequestBody CustomerDto customerDto) {
         CustomerDto customerDtoSave = customerService.saveNewCustomer(customerDto);
@@ -38,14 +41,18 @@ public class CustomerController {
         return new ResponseEntity<>(httpHeaders, HttpStatus.CREATED);
     }
 
-    /** update customer dto **/
+    /**
+     * update customer dto
+     **/
     @PutMapping({"/{customerId}"})
     public ResponseEntity<CustomerDto> updateCustomerDto(@PathVariable("customerId") UUID customerId, @RequestBody CustomerDto customerDto) {
         customerService.updateCustomer(customerId, customerDto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    /** delete a customer **/
+    /**
+     * delete a customer
+     **/
     @DeleteMapping({"/{customerId}"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBeerDto(@PathVariable("customerId") UUID customerId) {

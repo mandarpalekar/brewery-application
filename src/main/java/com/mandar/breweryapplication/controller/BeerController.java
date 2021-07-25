@@ -28,13 +28,16 @@ public class BeerController {
 
     @GetMapping({"/{beerId}"})
     public ResponseEntity<BeerDto> getBeer(@PathVariable("beerId") UUID beerId) {
-        log.debug("BeerDto object: {} is ", beerService.getBeerById(beerId));
+        log.info("BeerDto object: {} is ", beerService.getBeerById(beerId));
         return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
     }
 
-    /** Create a new beer dto **/
+    /**
+     * Create a new beer dto
+     **/
     @PostMapping
     public ResponseEntity<BeerDto> saveBeerDto(@RequestBody BeerDto beerDto) {
+        log.info("BeerDto object is : {}", beerDto);
         BeerDto beerDtoSave = beerService.saveNewBeer(beerDto);
         HttpHeaders httpHeaders = new HttpHeaders();
         //TODO: add hostname to url
@@ -42,17 +45,23 @@ public class BeerController {
         return new ResponseEntity<>(httpHeaders, HttpStatus.CREATED);
     }
 
-    /** update beer dto **/
+    /**
+     * update beer dto
+     **/
     @PutMapping({"/{beerId}"})
     public ResponseEntity<BeerDto> updateBeerDto(@PathVariable("beerId") UUID beerId, @RequestBody BeerDto beerDto) {
+        log.info("beerId is: {} and BeerDto object is: {}", beerId, beerDto);
         beerService.updateBeer(beerId, beerDto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    /** delete a beer **/
+    /**
+     * delete a beer
+     **/
     @DeleteMapping({"/{beerId}"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBeerDto(@PathVariable("beerId") UUID beerId) {
+        log.info("beerId is: {} ", beerId);
         beerService.deleteBeerById(beerId);
     }
 }
