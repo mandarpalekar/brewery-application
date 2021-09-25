@@ -1,6 +1,7 @@
 package com.mandar.breweryapplication.service;
 
 import com.mandar.breweryapplication.model.BeerDto;
+import com.mandar.breweryapplication.model.BeerStyle;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,8 +13,8 @@ public class BeerServiceImpl implements BeerService {
     @Override
     public BeerDto getBeerById(UUID beerId) {
         return BeerDto.builder().id(UUID.randomUUID())
-            .beerName("Bud Light")
-            .beerType("Lager")
+                .beerName("Bud Light")
+                .beerStyle(BeerStyle.CIDER)
             .build();
     }
 

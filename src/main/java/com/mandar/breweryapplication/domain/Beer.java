@@ -1,6 +1,7 @@
-package com.mandar.breweryapplication.model;
+package com.mandar.breweryapplication.domain;
 
-import java.time.OffsetDateTime;
+import com.mandar.breweryapplication.model.BeerStyle;
+import java.sql.Timestamp;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,13 +12,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BeerDto {
+public class Beer {
 
     private UUID id;
     private String beerName;
     private BeerStyle beerStyle;
     private Long upc;
 
-    private OffsetDateTime createdDate;
-    private OffsetDateTime lastUpdatedDate;
+    private Timestamp createdDate;
+    private Timestamp lastUpdatedDate;
 }
