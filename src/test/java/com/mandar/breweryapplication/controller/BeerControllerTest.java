@@ -12,6 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mandar.breweryapplication.model.BeerDto;
+import com.mandar.breweryapplication.model.BeerStyle;
 import com.mandar.breweryapplication.service.BeerService;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,9 +43,9 @@ public class BeerControllerTest {
     @BeforeEach
     public void setup() {
         validBeerDto = BeerDto.builder()
-            .id(UUID.randomUUID())
-            .beerName("Test Beer")
-            .beerType("Ale")
+                .id(UUID.randomUUID())
+                .beerName("Test Beer")
+                .beerStyle(BeerStyle.ALE)
             .upc(123456789L)
             .build();
     }
@@ -76,7 +77,7 @@ public class BeerControllerTest {
 
     @Test
     public void updateBeerDtoTest() throws Exception {
-        validBeerDto.setBeerType("Pale Ale");
+        validBeerDto.setBeerStyle(BeerStyle.IPA);
         String jsonBeerDto = objectMapper.writeValueAsString(validBeerDto);
 
         mockMvc.perform(put("/api/v1/beer/" + validBeerDto.getId())
